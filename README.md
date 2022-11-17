@@ -99,3 +99,10 @@ A aplicação vai iniciar no endereço https://localhost:4200.
 # SGCM - Diagrama Entidade Relacionamento
 
 ![SGCM_DER](sgcmDER.svg)
+
+# Atividade prática
+
+1. Modificar workflow para que o job que compila o projeto do back-end, realiza os testes e cria o arquivo JAR, seja dividido em dois jobs, sendo um para teste e outro para criar o arquivo JAR.
+
+    - Comando para executar os testes: ```mvn --activate-profiles prod test```
+    - Comando para criar o arquivo JAR (sem testes): ```mvn --activate-profiles prod -DskipTests package```

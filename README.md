@@ -106,3 +106,12 @@ A aplicação vai iniciar no endereço https://localhost:4200.
 
     - Comando para executar os testes: ```mvn --activate-profiles prod test```
     - Comando para criar o arquivo JAR (sem testes): ```mvn --activate-profiles prod -DskipTests package```
+
+2. Criar um workflow para integração e implantação contínua para o projeto front-end utilizando o GitHub Actions.
+
+    - A implantação pode ser feita em qualquer plataforma.
+    - Comando para executar os testes: ```npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI```
+    - Comando para compilar o projeto: ```npm run build --prod```
+    - IMPORTANTE:
+      - Configurar a constante ```API_URL``` no arquivo ```environment.prod.ts``` do projeto front-end.
+      - Modificar as configurações de CORS no back-end para adicionar o host da aplicação front-end em produção.

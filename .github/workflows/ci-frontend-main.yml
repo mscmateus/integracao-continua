@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js $
-        uses: actions/setup-node@main
+      - name: Use NodE
+        uses: actions/setup-node@v3
         with:
           node-version: "18.12.1"
       - name: Install packages with NPM
@@ -42,8 +42,8 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - uses: actions/checkout@v3
-      - name: Use Node.js $
-        uses: actions/setup-node@main
+      - name: Use Node
+        uses: actions/setup-node@v3
         with:
           node-version: "18.12.1"
       - name: Install packages with NPM

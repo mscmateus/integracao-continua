@@ -6,20 +6,10 @@ on:
       - '!main'
     paths:
       - 'back-end/**'
-<<<<<<< HEAD
 jobs:
   main:
     name: CI Workflow Main
     uses: ./.github/workflows/ci-backend-main.yml
-=======
-      
-jobs:
-
-  main:
-    name: CI Workflow Main
-    uses: ./.github/workflows/ci-backend-main.yml
-    
->>>>>>> 33c41188d4584c5043938514b671f571f520da72
   merge:
     needs: main
     runs-on: ubuntu-latest
@@ -28,10 +18,6 @@ jobs:
       - name: Merge branch
         uses: devmasx/merge-branch@1.4.0
         with:
-<<<<<<< HEAD
           types: now
-=======
-          type: now
->>>>>>> 33c41188d4584c5043938514b671f571f520da72
           target_branch: main
           github_token: ${{ github.token }}

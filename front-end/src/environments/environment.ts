@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://localhost:9000'
+  API_URL: 'https://sgcm-msc.up.railway.app/'
 };
 
 /*

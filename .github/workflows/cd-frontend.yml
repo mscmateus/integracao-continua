@@ -1,0 +1,28 @@
+name: CD Back-end
+
+on:
+  schedule:
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+
+jobs:
+  ci:
+    name: CI Workflow Main
+    uses: ./.github/workflows/ci-frontend-main.yml
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js $
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18.12.1"
+      - name: Instalação do cliente Railway
+        run: npm install -g @railway/cli
+      - if: ${{ steps.cache-dist.outputs.cache-hit != 'true' }}
+        name: Deploy
+        working-directory: front-end/dist/
+        run: railway up --detach --service sgcm
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_FRONT }}

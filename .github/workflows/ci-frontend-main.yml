@@ -1,0 +1,49 @@
+name: CI Front-end
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "front-end/**"
+  pull_request:
+    paths:
+      - "front-end/**"
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js $
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18.12.1"
+      - name: Test
+        working-directory: front-end/
+        run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  package:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache dist
+        id: cache-dist
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-front-dist
+        with:
+          path: ~/front-end/dist
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - uses: actions/checkout@v3
+      - name: Use Node.js $
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18.12.1"
+      - name: Test
+        working-directory: front-end/
+        run: npm run build --prod

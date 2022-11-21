@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js $
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@main
         with:
           node-version: "18.12.1"
       - name: Install packages with NPM
@@ -43,7 +43,7 @@ jobs:
             ${{ runner.os }}-
       - uses: actions/checkout@v3
       - name: Use Node.js $
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@main
         with:
           node-version: "18.12.1"
       - name: Install packages with NPM

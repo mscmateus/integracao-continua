@@ -20,9 +20,18 @@ jobs:
         with:
           node-version: "18.12.1"
       - name: Instalação do cliente Railway
+        working-directory: front-end/
         run: npm install -g @railway/cli
-      - if: ${{ steps.cache-dist.outputs.cache-hit != 'true' }}
-        name: Deploy
+
+      - name: Cache dist get
+        id: cache-dist-get
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-front-dist
+        with:
+          path: front-end/dist
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Deploy
         working-directory: front-end/dist/
         run: railway up --detach --service sgcm
         env:

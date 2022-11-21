@@ -21,6 +21,7 @@ jobs:
         with:
           node-version: "18.12.1"
       - name: Install packages with NPM
+        working-directory: front-end/
         run: npm install
       - name: Test
         working-directory: front-end/
@@ -35,7 +36,7 @@ jobs:
         env:
           cache-name: cache-front-dist
         with:
-          path: ~/front-end/dist
+          path: front-end/dist
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
@@ -47,6 +48,7 @@ jobs:
         with:
           node-version: "18.12.1"
       - name: Install packages with NPM
+        working-directory: front-end/
         run: npm install
       - name: Test
         working-directory: front-end/

@@ -30,18 +30,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Cache dist
-        id: cache-dist
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-front-dist
-        with:
-          path: front-end/dist
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+      
       - uses: actions/checkout@v3
       - name: Use Node
         uses: actions/setup-node@v3
@@ -53,3 +42,8 @@ jobs:
       - name: Test
         working-directory: front-end/
         run: npm run build --prod
+      - name: Cache dist
+        uses: actions/cache@v3
+        with:
+          path: front-end/dist
+          key: build-${{ github.sha }}

@@ -20,7 +20,7 @@ public class FiltroCors {
             Arrays.asList(
                 "http://127.0.0.1:5500",
                 "https://localhost:4200",
-                "https://sgcm-msc.up.railway.app/")
+                "https://sgcm-msc-front-production.up.railway.app")
         );
         corsConfig.setAllowedMethods(Arrays.asList("*"));
         corsConfig.setAllowedHeaders(Arrays.asList("*"));

@@ -23,16 +23,14 @@ jobs:
         working-directory: front-end/
         run: npm install -g @railway/cli
 
-      - name: Cache dist get
-        id: cache-dist-get
+      - name: Restaurar cache
         uses: actions/cache@v3
-        env:
-          cache-name: cache-front-dist
         with:
           path: front-end/dist
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: build-${{ github.sha }}
+
       - name: Deploy
-        working-directory: front-end/
+        working-directory: front-end/dist/sgcmapp
         run: railway up --detach --service sgcm-msc-front
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_FRONT }}

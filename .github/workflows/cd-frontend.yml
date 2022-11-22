@@ -32,7 +32,7 @@ jobs:
           path: front-end/dist
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - name: Deploy
-        working-directory: front-end/dist
+        working-directory: front-end/
         run: railway up --detach --service sgcm-msc-front
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_FRONT }}
